@@ -43,7 +43,6 @@ function authService($log, $q, $http, $window) {
         'Accept': 'application/json'
       }
     };
-    console.log('heres my user', user);
 
     return $http.post(url, user, config)
     .then( res => {
@@ -71,10 +70,11 @@ function authService($log, $q, $http, $window) {
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {
-        'Authorization': `Basic ${base64}`,
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Basic ${base64}`
       }
     };
+    $log.log('heres my url, user, and config', url, user, config);
 
     return $http.get(url, user, config)
     .then( res => {

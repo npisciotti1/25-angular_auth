@@ -14,9 +14,6 @@ function LoginController($log, $location, authService) {
   authService.getToken()
   .then( () => {
     $location.url('/home');
-  })
-  .catch( err => {
-    $log.error('failed to get token', err.message);
   });
 
   this.login = function() {
@@ -25,9 +22,6 @@ function LoginController($log, $location, authService) {
     authService.login(this.user)
     .then( () => {
       $location.url('/home');
-    })
-    .catch( err => {
-      $log.error('failed to login', err.message);
     });
   };
 
