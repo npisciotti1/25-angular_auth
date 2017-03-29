@@ -2,9 +2,6 @@
 
 module.exports = ['$log', '$q', '$http', '$window', authService];
 
-//hard-coded becuase my .env was being a bitch
-process.env.API_URL = 'https://cfgram-staging-nikko.herokuapp.com';
-
 function authService($log, $q, $http, $window) {
   $log.debug('auth service');
 
@@ -35,16 +32,19 @@ function authService($log, $q, $http, $window) {
 
   service.signup = function(user) {
     $log.debug('authService.signup');
+    $log.log('process.env.__API_URL__', process.env.__API_URL__);
 
-    let url = `${process.env.API_URL}/api/signup`;
     let config = {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-      }
+      },
+      url: `${process.env.__API_URL__}/api/signup`,
+      data: user
     };
 
-    return $http.post(url, user, config)
+    return $http(config)
     .then( res => {
       $log.log('success', res.data);
       return setToken(res.data);
@@ -73,7 +73,7 @@ function authService($log, $q, $http, $window) {
         'Accept': 'application/json',
         'Authorization': `Basic ${base64}`
       },
-      url: `${process.env.API_URL}/api/login`,
+      url: `${process.env.__API_URL__}/api/login`,
     };
 
     return $http(config)
