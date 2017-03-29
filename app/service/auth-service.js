@@ -66,17 +66,17 @@ function authService($log, $q, $http, $window) {
   service.login = function(user) {
     $log.debug('authService.login');
 
-    let url = `${process.env.API_URL}/api/login`;
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Authorization': `Basic ${base64}`
-      }
+      },
+      url: `${process.env.API_URL}/api/login`,
     };
-    $log.log('heres my url, user, and config', url, user, config);
 
-    return $http.get(url, user, config)
+    return $http(config)
     .then( res => {
       $log.log('success', res.data);
       return setToken(res.data);
