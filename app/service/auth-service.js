@@ -14,7 +14,7 @@ function authService($log, $q, $http, $window) {
   function setToken(_token) {
     $log.debug('authService.setToken');
 
-    if(!token) return $q.reject(new Error('no token'));
+    if(!_token) return $q.reject(new Error('no token'));
 
     $window.localStorage.token = _token;
     token = _token;
@@ -43,6 +43,7 @@ function authService($log, $q, $http, $window) {
         'Accept': 'application/json'
       }
     };
+    console.log('heres my user', user);
 
     return $http.post(url, user, config)
     .then( res => {

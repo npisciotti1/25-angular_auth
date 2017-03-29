@@ -1,5 +1,7 @@
 'use strict';
 
+require('./scss/main.scss');
+
 const angular = require('angular');
 const camelcase = require('camelcase');
 const pascalcase = require('pascalcase');
@@ -8,7 +10,7 @@ const uiRouter = require('angular-ui-router');
 const ngTouch = require('angular-touch');
 const ngAnimate = require('angular-animate');
 
-const cfgram = angular.module('cfgram', [uiRouter, ngAnimate, ngTouch]);
+const cfgram = angular.module('cfgram', [ngTouch, ngAnimate, uiRouter]);
 
 let context = require.context('./config/', true, /\.js$/);
 context.keys().forEach( key => {
