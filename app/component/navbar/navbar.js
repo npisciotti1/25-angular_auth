@@ -7,7 +7,7 @@ module.exports = {
   controller: ['$log', '$location', '$rootScope', 'authService', NavbarController],
   controllerAs: 'navbarCtrl'
 };
-
+ 
 function NavbarController($log, $location, $rootScope, authService) {
   $log.debug('NavbarController');
 
