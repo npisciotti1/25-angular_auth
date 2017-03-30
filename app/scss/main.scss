@@ -1,12 +1,12 @@
 @import 'reset';
-@import 'vars';
+// @import 'vars';
 // :::: Base Styles :::: //
 
 html body {
   max-width: 960px;
   height: 100%;
   margin: 0 auto;
-  background-color: $sitePrimary;
+  background-color: #d8d8d8;
 }
 
 main{
