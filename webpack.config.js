@@ -2,10 +2,12 @@
 
 const dotenv = require('dotenv');
 const webpack = require('webpack');
+const path = require('path');
 const HTMLPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const production = process.env.NODE_ENV === 'production';
+const sassVars = require('./app/scss/_vars.scss');
 
 dotenv.load();
 
@@ -25,7 +27,7 @@ module.exports = {
       'process.env': {
         '__API_URL__': JSON.stringify(process.env.API_URL),
         '__DEBUG__': JSON.stringify(!production)
-      }
+      },
     }),
   ],
   module: {

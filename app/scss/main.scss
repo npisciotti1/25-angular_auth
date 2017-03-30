@@ -1,0 +1,14 @@
+@import 'reset';
+@import 'vars';
+// :::: Base Styles :::: //
+
+html body {
+  max-width: 960px;
+  height: 100%;
+  margin: 0 auto;
+  background-color: $sitePrimary;
+}
+
+header {
+  height: 5%;
+}
