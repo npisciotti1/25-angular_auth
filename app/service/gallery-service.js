@@ -39,7 +39,7 @@ function galleryService($q, $log, $http, authService) {
     });
   };
 
-  service.deleteGalleries = function(galleryID) {
+  service.deleteGalleries = function() {
     $log.debug('galleryService.deleteGalleries');
 
     return authService.getToken()
@@ -51,10 +51,12 @@ function galleryService($q, $log, $http, authService) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        url: `${process.env.__API_URL__}/api/gallery/${galleryID}`
+        url: `${process.env.__API_URL__}/api/gallery`,
+        //may need to check this so backend expects galleryId in proper channel
+        data: 'galleryID'
       };
 
-      return $http(galleryID, config);
+      return $http(config);
     })
     .catch( err => {
       $log.error(err.message);
@@ -83,6 +85,69 @@ function galleryService($q, $log, $http, authService) {
       $log.log('got galleries');
       service.galleries = res.data;
       return service.galleries;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.updateGalleries = function(galleryID, galleryData) {
+    $log.debug('galleryService.updateGalleries');
+
+    return authService.getToken()
+    .then( token => {
+      let config = {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        url: `${process.env.__API_URL__}/api/gallery/${galleryID}`,
+        data: galleryData
+      };
+
+      return $http(config);
+    })
+    .then( res => {
+      for (let i = 0; i < service.galleries.length; i++) {
+        let current = service.galleries[i];
+        if (current._id === galleryID) {
+          service.galleries[i] = res.data;
+          break;
+        }
+      }
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.deleteGallery = function(galleryID) {
+    $log.debug('galleryService.deleteGallery');
+
+    return authService.getToken()
+    .then( token => {
+      let config = {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        url: `${process.env.__API_URL__}/api/gallery/${galleryID}`
+      };
+
+      return $http(config);
+    })
+    .then( () => {
+      for (let i = 0; i < service.galleries.length; i++) {
+        let current = service.galleries[i];
+        if (current._id === galleryID) {
+          service.galleries.splice(i, 1);
+          break;
+        }
+      }
     })
     .catch( err => {
       $log.error(err.message);

@@ -7,7 +7,6 @@ const HTMLPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const production = process.env.NODE_ENV === 'production';
-const sassVars = require('./app/scss/_vars.scss');
 
 dotenv.load();
 
