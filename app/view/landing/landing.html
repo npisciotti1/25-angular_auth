@@ -5,11 +5,14 @@
 
     <div class="join-inner">
       <signup></signup>
-      <p>already a member?</p>
-      <a href="/#/join#login"
+
+      <div class="float-right">
+        <p>already a member?</p>
+        <a class= href="/#/join#login"
         ng-click="landingCtrl.showSignup=false">
         sign in here.
-      </a>
+        </a>
+      </div class="float-right">
     </div>
 
   </div>
@@ -19,13 +22,17 @@
 
     <div class="join-inner">
       <login></login>
-      <p>want to sign up?</p>
-      <a href="/#/join#signup"
-      ng-click="landingCtrl.showSignup=true">
-      sign up here
-      </a>
+      
+        <div class="float-right">
+          <p>want to sign up?</p>
+          <a href="/#/join#signup"
+          ng-click="landingCtrl.showSignup=true">
+          sign up here
+          </a>
+        </div>
     </div>
-    
+
   </div>
+  <div class="clearfix"></div>
 
 </section>

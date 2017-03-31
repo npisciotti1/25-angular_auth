@@ -1,0 +1,38 @@
+//:::: Navbar Styles :::://
+
+.navbar {
+  width: 100%;
+  height: 9vw;
+  background-color: #4a4a4a;
+  border: 1px solid grey;
+  position: relative;
+
+  img {
+    width: 6vw;
+    height: 6vw;
+    position: absolute;
+    top: 17%;
+    left: 3%;
+  }
+
+  h2 {
+    font-size: 4vw;
+    position: absolute;
+    top: 26%;
+    left: 10.5%;
+    color: #e6e6e6;
+  }
+
+  .logout-btn {
+    position: absolute;
+    right: 3%;
+    top: 32%;
+    border-radius: 10px;
+    border: none;
+    background-color: #d8d8d8;
+    color: #727272;
+    width: 12vw;
+    height: 3vw;
+    font-size: 1.75vw;
+  }
+}
