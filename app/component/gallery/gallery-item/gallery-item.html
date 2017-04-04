@@ -1,12 +1,12 @@
 <li class="gallery-item">
   <div class="current-item" ng-if="!galleryItemCtrl.showEditGallery">
     <div>
-      <span class="item-label">name:</span>
+      <span class="label">name:</span>
       <span>{{ galleryItemCtrl.gallery.name }}</span>
     </div>
 
     <div>
-      <span class="item-label">description:</span>
+      <span class="label">description:</span>
       <span>{{ galleryItemCtrl.gallery.description }}</span>
     </div>
   </div>
@@ -14,8 +14,11 @@
   <edit-gallery ng-if="galleryItemCtrl.showEditGallery"
   gallery=galleryItemCtrl.gallery></edit-gallery>
 
-  <span ng-click="galleryItemCtrl.showEditGallery = !galleryItemCtrl.showEditGallery">edit</span>
+  <button class='btn-grey' ng-click="galleryItemCtrl.deleteGallery()"
+  ng-hide="galleryItemCtrl.showEditGallery">delete</button>
+  <button ng-click="galleryItemCtrl.showEditGallery = !galleryItemCtrl.showEditGallery"
+  ng-hide="galleryItemCtrl.showEditGallery">edit</button>
 
-  <span ng-click="galleryItemCtrl.deleteGallery()">delete</span>
+  <div class="clearfix"></div>
 
 </li>
