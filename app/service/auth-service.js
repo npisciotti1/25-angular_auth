@@ -32,7 +32,6 @@ function authService($log, $q, $http, $window) {
 
   service.signup = function(user) {
     $log.debug('authService.signup');
-    $log.log('process.env.__API_URL__', process.env.__API_URL__);
 
     let config = {
       method: 'POST',
