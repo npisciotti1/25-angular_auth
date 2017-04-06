@@ -12,21 +12,40 @@ function picService($log, $q, $http, Upload, authService) {
     return authService.getToken()
     .then( token => {
 
-      let url = `${process.env.__API_URL__}/api/gallery/${galleryData._id}/pic`;
-      let headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-      };
+      // let url = `${process.env.__API_URL__}/api/gallery/${galleryData._id}/pic`;
+      // let headers = {
+      //   'Authorization': `Bearer ${token}`,
+      //   'Accept': 'application/json'
+      // };
 
-      return Upload.upload({
-        url,
+      let testURL = (process.env.__API_URL__ + '/api/gallery/' + galleryData._id + '/pic');
+
+
+      let config = {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json'
+        },
+        url: testURL.toString(),
         data: {
           name: picData.name,
           description: picData.description,
           file: picData.file
-        },
-        headers
+        }
+      };
+      $log.log('heres the config object', config);
+
+      return Upload.upload({
+        config
+        // url,
+        // method: 'POST',
+        // data: {
+        //   name: picData.name,
+        //   description: picData.description,
+        //   file: picData.file
+        // },
+        // headers
       });
     })
     .then( res => {
