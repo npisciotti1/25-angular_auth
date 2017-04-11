@@ -31,8 +31,6 @@ function LandingModalController($log, $uibModal, $scope) {
     })
     .then(null, (reason) => {
       this.handleDismiss(reason);
-      console.log('heres the scope object', $scope);
-      console.log('heres the this, controller as:', this);
     });
   };
 
