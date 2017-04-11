@@ -1,5 +1,5 @@
 {
-  "name": "frontend-auth",
+  "name": "cf-gram nikko",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,12 @@
     "build-watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
     "test": "./node_modules/karma/bin/karma start --single-run",
     "test-watch": "./node_modules/karma/bin/karma start",
-    "lint": "./node_modules/eslint/bin/eslint.js ./*"
+    "lint": "./node_modules/eslint/bin/eslint.js ./*",
+    "heroku-postbuild": "webpack -p"
+  },
+  "engines": {
+    "node": "6.9.5",
+    "npm": "3.10.10"
   },
   "keywords": [],
   "author": "",
